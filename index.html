@@ -15,6 +15,19 @@
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+		
+		<style>
+			img {
+				max-width: 300px;
+				max-height: 300px;
+				min-width: 225px;
+				min-height: 225px;
+				border: 0 !important;
+			}
+			img.borderless {
+				box-shadow: none !important;
+			}
+		</style>
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -29,18 +42,34 @@
 		<div class="reveal">
 			<div class="slides">
 				<section data-background-iframe="./bg-particles.html" data-markdown>
-					# Grafos e Árvores
+					<script type="text/template">
+						# Teoria dos Grafos
+					</script>
 				</section>
 				<section>
 					<section>
-						<h2>Definição</h2>
+						<h2>Definições</h2>
 						<p class="fragment" data-markdown>
-							> Estrutura de dados formada por dois conjuntos, um de arestas e um de vértices
+							> Formada por dois conjuntos, um de arestas e um de vértices
 						</p>
+					</section>
+					<section data-markdown>
+						## Vértice
+						Não passam de um ponto no espaço  
+						
+						___
+						
+						
+						## Aresta
+						Uma ligação entre dois vértices.
+					</section>
+					<section>
+						<h2>Pontes de Konigsberg</h2>
+						<img src="images/alemanha.png" />
 					</section>
 					<section>
 						$$V=\{a, b, c, d, e\}$$
-						$$A=\{(a, b); (a, c); (b, d); (c, d)\}$$
+						$$A=\{(a, b); (a, c); (a, d); (d, b); (d, c)\}$$
 					</section>
 				</section>
 				<section>
@@ -48,16 +77,36 @@
 						## Propriedades
 					</section>
 					<section data-markdown>
+						### Grau
+						> Quantidade de arestas relacionadas a um vértice $V$
+					</section>
+					<section data-markdown>
 						### Direção
-						> Lorem ipsum
+						> Arestas podem ser direcionadas, podendo ser navegadas em apenas uma direção.
 					</section>
 					<section data-markdown>
 						### Peso
-						> Lorem ipsum
+						> Valor atribuído a vértices e/ou arestas em um grafo.
 					</section>
 					<section data-markdown>
 						### Excentricidade
-						> Lorem ipsum
+						> A distância obtida entre um ponto central para algum outro. 
+					</section>
+					<section data-markdown>
+						### Centro
+						> O centro de um grafo é o conjunto formado pelos vértices de menor excentricidade.
+					</section>
+					<section data-markdown>
+						### Raio
+						> O raio de um grafo é o menor valor de excentricidade para todo vértice V.
+					</section>
+					<section data-markdown>
+						### Diâmetro
+						> O diâmetro de um grafo é o maior valor de excentricidade para todo vértice V.
+					</section>
+					<section data-markdown>
+						### Mediana
+						> A mediana é a soma das distâncias entre os vértices e a comparação para chegar no menor valor.
 					</section>
 				</section>
 				<section>
@@ -81,38 +130,66 @@
 					<section>
 						$$a_{i,j} = 
 						\begin{cases}
-							0 & \quad \text{não existe aresta} \\
-							1 & \quad \text{existe aresta ou aponta de } i \text{ para } j \\
-							{-1} & \quad \text{existe aresta e aponta de } j \text{ para } i \\
-							n & \quad \text{existe aresta e tem peso } n
+							0 & \quad \text{se não existe aresta} \\
+							1 & \quad \text{se existe aresta ou aponta de } i \text{ para } j \\
+							{-1} & \quad \text{se existe aresta e aponta de } j \text{ para } i \\
+							n & \quad \text{se existe aresta e tem peso } n
 						\end{cases}$$
 					</section>
 					<section>
-						$$\begin{bmatrix}
-						0 & 1 & 1 & 0 & 0 \\ 
-						1 & 0 & 0 & 1 & 0 \\ 
-						1 & 0 & 0 & 1 & 0 \\ 
-						0 & 1 & 1 & 0 & 0 \\ 
-						0 & 0 & 0 & 0 & 0
-						\end{bmatrix}$$
+						$$
+						\begin{array}{r|lll}
+						~ & A & B & C & D & E  \\
+						\hline
+						A & 0 & 1 & 1 & 0 & 0 \\ 
+						B & 1 & 0 & 0 & 1 & 0 \\ 
+						C & 1 & 0 & 0 & 1 & 0 \\ 
+						D & 0 & 1 & 1 & 0 & 0 \\ 
+						E & 0 & 0 & 0 & 0 & 0
+						\end{array}
+						$$
+						<p class="fragment">
+							Simétrica no eixo da <i>diagonal principal</i>
+						</p>
 					</section>
 					<section>
-						$$\begin{bmatrix}
-						\boldsymbol{0} &  &  &  &  \\ 
-						1 & \boldsymbol{0} &  &  &  \\ 
-						1 & 0 & \boldsymbol{0} &  &  \\ 
-						0 & 1 & 1 & \boldsymbol{0} &  \\ 
-						0 & 0 & 0 & 0 & \boldsymbol{0}
-						\end{bmatrix}$$
+						$$
+						\begin{array}{r|lll}
+						~ & A & B & C & D & E  \\
+						\hline
+						A & \boldsymbol{0} & 1 & 1 & 0 & 0 \\ 
+						B & 1 & \boldsymbol{0} & 0 & 1 & 0 \\ 
+						C & 1 & 0 & \boldsymbol{0} & 1 & 0 \\ 
+						D & 0 & 1 & 1 & \boldsymbol{0} & 0 \\ 
+						E & 0 & 0 & 0 & 0 & \boldsymbol{0}
+						\end{array}
+						$$
 					</section>
 					<section>
-						$$\begin{bmatrix}
-						\boldsymbol{0} & 1 & 1 & 0 & 0 \\ 
-						 & \boldsymbol{0} & 0 & 1 & 0 \\ 
-						 &  & \boldsymbol{0} & 1 & 0 \\ 
-						 &  &  & \boldsymbol{0} & 0 \\ 
-						 &  &  &  & \boldsymbol{0}
-						\end{bmatrix}$$
+						$$
+						\begin{array}{r|lll}
+						~ & A & B & C & D & E  \\
+						\hline
+						A & \boldsymbol{0} & 1 & 1 & 0 & 0 \\ 
+						B & & \boldsymbol{0} & 0 & 1 & 0 \\ 
+						C & & & \boldsymbol{0} & 1 & 0 \\ 
+						D & & & & \boldsymbol{0} & 0 \\ 
+						E & & & & & \boldsymbol{0}
+						\end{array}
+						$$
+					</section>
+					<section>
+						$$
+						\begin{array}{r|lll}
+						~ & A & B & C & D & E  \\
+						\hline
+						A & \boldsymbol{0} & & & & \\ 
+						B & 1 & \boldsymbol{0} & & & \\ 
+						C & 1 & 0 & \boldsymbol{0} & & \\ 
+						D & 0 & 1 & 1 & \boldsymbol{0} & \\ 
+						E & 0 & 0 & 0 & 0 & \boldsymbol{0}
+						\end{array}
+						$$
 					</section>
 					<section data-markdown>
 						### Matriz de incidência
@@ -120,22 +197,30 @@
 						> Tem formato $n \times m$
 					</section>
 					<section>
-						$$\begin{bmatrix}
-						1 & 1 & 0 & 0 \\ 
-						1 & 0 & 1 & 0 \\ 
-						0 & 1 & 0 & 1 \\ 
-						0 & 0 & 1 & 1 \\ 
-						0 & 0 & 0 & 0
-						\end{bmatrix}$$
+						$$
+						\begin{array}{r|lll}
+						~ & a_{1} & a_{2} & a_{3} & a_{4} \\
+						\hline
+						A & 1 & 1 & 0 & 0 \\ 
+						B & 1 & 0 & 1 & 0 \\ 
+						C & 0 & 1 & 0 & 1 \\ 
+						D & 0 & 0 & 1 & 1 \\ 
+						E & 0 & 0 & 0 & 0
+						\end{array}
+						$$
 					</section>
 					<section>
-						$$\begin{bmatrix}
-						\boldsymbol{1} & 1 & 0 & 0 \\ 
-						1 & \boldsymbol{0} & 1 & 0 \\ 
-						0 & 1 & \boldsymbol{0} & 1 \\ 
-						0 & 0 & 1 & \boldsymbol{1} \\ 
-						0 & 0 & 0 & 0
-						\end{bmatrix}$$
+						$$
+						\begin{array}{r|lll}
+						~ & a_{1} & a_{2} & a_{3} & a_{4} \\
+						\hline
+						A & \boldsymbol{1} & 1 & 0 & 0 \\ 
+						B & 1 & \boldsymbol{0} & 1 & 0 \\ 
+						C & 0 & 1 & \boldsymbol{0} & 1 \\ 
+						D & 0 & 0 & 1 &\boldsymbol{1}  \\ 
+						E & 0 & 0 & 0 & 0
+						\end{array}
+						$$
 
 						<p class="fragment">Só é simétrico se $n = m$</p>
 					</section>
@@ -146,20 +231,228 @@
 					</section>
 					<section>
 						$$
-						\begin{array}{rccc}
+						\begin{array}{|r|l|}
+						\hline
+						A & \to B \\
+						\hline
+						\end{array}
+						$$
+					</section>
+					<section>
+						$$
+						\begin{array}{r|lll}
 						A & \to B & \to C & \to \bullet \\
+						\hline
 						B & \to A & \to D & \to \bullet \\
+						\hline
 						C & \to A & \to D & \to \bullet \\
+						\hline
 						D & \to B & \to C & \to \bullet \\
+						\hline
 						E & \to \bullet
 						\end{array}
 						$$
 					</section>
+					<!--<section>
+					<pre><code data-trim data-noescape>
+struct No {
+	int valor;
+	*No proximo;
+}
+					</code></pre>
+					</section>-->
 				</section>
-				<!--<section data-background-iframe="./bg-particles.html"> -->
 				<section>
+					<section data-markdown>
+						## Classificações
+					</section>
+					<section>
+						<h3>Grafos Direcionais</h3>
+						<img src="images/grafoDirecional.png"/>
+					</section>
+					<section>
+						<h3>Grafos Simples</h3>
+						<img src="images/grafoSimples.png"/>
+					</section>
+					<section>
+						<h3>Grafos Completo</h3>
+						<img src="images/grafoCompleto.png"/>
+					</section>
+					<section>
+						<h3>Grafos Conexos</h3>
+						<img src="images/grafoConexo.png"/>
+					</section>
+					<section>
+						<h3>Grafos Ponderados</h3>
+						<img src="images/grafoPonderado.png"/>
+					</section>
+					<section>
+						<h3>Um exemplo de matriz ponderada</h3>
+						$$
+						\begin{array}{r|cccccc}
+						~ & A & B & C & D & E & F \\
+						\hline
+						A & \boldsymbol{0} & 15 & 0 & 0 & 0 & 0 \\ 
+						B & 15 & \boldsymbol{0} & 7 & 0 & 10 & 0\\ 
+						C & 0 & 7 & \boldsymbol{0} & 12 & 0 & 0 \\ 
+						D & 0 & 0 & 12 & \boldsymbol{0} & 14 & 0 \\ 
+						E & 0 & 10 & 0 & 14 & \boldsymbol{0} & 13 \\ 
+						F & 0 & 0 & 0 & 0 & 13 & \boldsymbol{0}
+						\end{array}
+						$$
+					</section>
+					<section>
+						<h3>Subgrafos</h3>
+						<img src="images/subgrafo.png"/>
+					</section>
+					<section>
+						<h3>Grafos Bipartidos Completos</h3>
+						<img src="images/grafoBipartido.png"/>
+					</section>
+					<section>
+						<h3>Grafos Isomorfos</h3>
+						<img src="images/grafoIsomorfo1.png"/>
+						<img src="images/grafoIsomorfo2.png"/>
+						<img src="images/grafoIsomorfo3.png"/>
+					</section>
+					<section>
+						<h3>Grafos Homeomorfos</h3>
+						<img src="images/grafoHomeomorfo.png"/>
+					</section>
+					<section>
+						<h3>Grafos Eulerianos e Hamiltonianos</h3>
+						<img src="images/grafoEuleriano.png"/>
+					</section>
+				</section>
+				<section data-markdown>
+					# Árvore
+				</section>
+				<section>
+					<section data-markdown>
+						## Definições
+					</section>
+					<section>
+						Grafo conexo e sem ciclos
+						<br>
+						<img src="images/arvore.png" />
+					</section>
+					<section data-markdown>
+						### Raiz
+						> Nó escolhido arbitrariamente
+					</section>
+					<section data-markdown>
+						### Nível
+						> Número de nós que devem ser navegados para chegar da raiz a um vértice $V$
+					</section>
+					<section data-markdown>
+						### Folha
+						> O conjunto de vértices sem filhos na árvore
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						## Representação
+					</section>
+					<section>
+						<h2>Matriz de Adjacência</h2>
+						$$
+						\begin{array}{r|cccccc}
+						~ & A & B & C & D & E & F \\
+						\hline
+						A & \boldsymbol{0} & 1 & 1 & 0 & 0 & 0 \\ 
+						B & -1 & \boldsymbol{0} & 0 & 1 & 0 & 0 \\ 
+						C & -1 & 0 & \boldsymbol{0} & 0 & 1 & 1 \\ 
+						D & 0 & -1 & 0 & \boldsymbol{0} & 0 & 0 \\ 
+						E & 0 & 0 & -1 & 0 & \boldsymbol{0} & 0 \\ 
+						F & 0 & 0 & -1 & 0 & 0 & \boldsymbol{0}
+						\end{array}
+						$$
+					</section>
+					<section>
+						<h2>Matriz de Incidência</h2>
+						$$
+						\begin{array}{r|ccccc}
+						~ & a_{1} & a_{2} & a_{3} & a_{4} & a_{5} \\
+						\hline
+						A & \boldsymbol{1} & 1 & 0 & 0 & 0 \\ 
+						B & 0 & \boldsymbol{1} & 1 & 0 & 0 \\ 
+						C & 0 & -1 & \boldsymbol{0} & 1 & 1 \\ 
+						D & 0 & 0 & -1 & \boldsymbol{0} & 0 \\ 
+						E & 0 & 0 & 0 & -1 & \boldsymbol{0} \\ 
+						F & 0 & 0 & 0 & 0 & -1 \\ 
+						\end{array}
+						$$
+					</section>
+					<section>
+						<h2>Lista Indexada</h2>
+						$$
+						\begin{array}{r|lll}
+						A & \to B & \to C & \to \bullet \\
+						\hline
+						B & \to D & \to \bullet \\
+						\hline
+						C & \to E & \to \bullet \\
+						\hline
+						D & \to \bullet \\
+						\hline
+						E & \to \bullet \\
+						\hline
+						F & \to \bullet \\
+						\end{array}
+						$$
+					</section>
+					<section>
+						<h2>Lista Indexada 2</h2>
+						$$
+						\begin{array}{rrrr}
+						A & \to B & \to D & \to \bullet \\
+						\downarrow & & & \\
+						C & \to E & \to \bullet \\
+						 & \downarrow \\
+						 & F & \to \bullet
+						\end{array}
+						$$
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						## Classificações
+					</section>
+					<section data-markdown>
+						## Árvore Binária
+						> Árvore que pode ter apenas de 0 a 2 filhos.
+					</section>
+					<section data-markdown>
+						## Floresta
+						> Grafo composto de árvores desconexas.
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						# Aplicações
+					</section>
+					<section data-markdown>
+						## Sistemas de recomendação
+						- Facebook;
+						- Lojas online.
+					</section>
+					<section data-markdown>
+						## Chamadas de uma função recursiva!
+					</section>
+				</section>
+
+				<!--<section
+						data-background-iframe="./bg-particles2.html"
+						data-background-color="#222">
 					<h1>Obrigadx!</h1>
 					<span class="fragment">Perguntas?</span>
+				</section>-->
+
+				<section
+						data-background-iframe="./bg-particles3.html"
+						data-background-color="rgb(4, 50, 100)">
+					<h1>Obrigadx</h1>
+					<img class="borderless" src="images/nyan.gif" />
 				</section>
 			</div>
 		</div>
@@ -172,6 +465,9 @@
 			(function(SlideConfig) {
 				Reveal.initialize({
 					//controls: false,
+					math: {
+						mathjax: 'plugin/MathJax-2.7.2/MathJax.js'
+					},
 					overview: false,
 					mouseWheel: true,
 					dependencies: [
@@ -179,16 +475,15 @@
 						{ src: 'plugin/markdown/markdown.js' },
 						{ src: 'plugin/notes/notes.js', async: true },
 						{ src: 'plugin/math/math.js', async: true },
-						{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad() } }
+						//{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad() } }
 					]
 				})
 
-				Reveal.addEventListener('slidechanged', function(event) {
+				/*Reveal.addEventListener('slidechanged', function(event) {
 					if(event.indexh == 0)
 						SlideConfig.restartParticles()
 					else SlideConfig.stopParticles()
-				})
-            console.log(SlideConfig)
+				})*/
 			})(window.SlideConfig || {})
 		</script>
 	</body>
